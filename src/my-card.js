@@ -19,18 +19,24 @@ export class MyCard extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: block;
+        display: inline-flex;
+      }
+      span {
+
       }
     `;
   }
 
   render() {
-    return html`<div>${this.title}</div>`;
+    return html`<a href="${this.link}" rel="noopener noreferrer"></a>
+      <div>${this.img}</div>
+      <div>${this.title}</div>`;
   }
 
   static get properties() {
     return {
       title: { type: String },
+      link: { type: String },
     };
   }
 }
