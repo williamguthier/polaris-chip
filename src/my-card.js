@@ -13,30 +13,67 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "My card";
+    this.title = "Best Cards:";
+    
   }
 
   static get styles() {
     return css`
       :host {
+        background-color: black;
         display: inline-flex;
+        padding: 16px;
+        border: 5px solid red;
+        border-radius: 8px;
+        margin: 8px;
+        
       }
-      span {
+   
+      .card-wrapper:hover {
+        border: 5px solid transparent;
+      }
+      .card-wrapper {
+        text-align: center;
+
 
       }
+
+      button {
+        background-color: white;
+
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      
+      }
+
+      img {
+        max-width: 200px;
+        height: 300px;
+        margin: auto;
+      }
+      
+
     `;
   }
 
   render() {
-    return html`<a href="${this.link}" rel="noopener noreferrer"></a>
-      <div>${this.img}</div>
-      <div>${this.title}</div>`;
+    return html`
+    <a href="${this.link}" rel="noopener noreferrer"></a>
+    <div class="card-wrapper">
+    <img src="${this.img}" alt="playing card image">
+    <div class="title">${this.title}</div>
+  </div>`
   }
 
   static get properties() {
     return {
       title: { type: String },
       link: { type: String },
+      img: { type: String}
     };
   }
 }
