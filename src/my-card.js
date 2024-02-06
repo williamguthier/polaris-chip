@@ -13,7 +13,7 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "Best Cards:";
+    this.title = "Title";
     
   }
 
