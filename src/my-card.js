@@ -1,9 +1,5 @@
 import { LitElement, html, css } from 'lit';
 
-/**
- * Now it's your turn. Here's what we need to try and do
- * 1. 
- */
 
 export class MyCard extends LitElement {
 
@@ -14,6 +10,8 @@ export class MyCard extends LitElement {
   constructor() {
     super();
     this.title = "Title";
+    this.image = "Image";
+    this.link = "Link";
     
   }
 
@@ -21,56 +19,90 @@ export class MyCard extends LitElement {
     return css`
 
       :host {
-        background-color: black;
         display: inline-flex;
+        background-color: black;
         padding: 16px;
-        border: 5px solid red;
-        border-radius: 8px;
+        border: 8px solid red;
+        border-radius: 16px;
         margin: 8px;
-        
-      }
-   
-      .card-wrapper:hover {
-        border: 5px solid transparent;
-      }
-      .card-wrapper {
         text-align: center;
+      }
 
-
+      #cardlist {
+        display: inline-flex;
       }
 
 
-      .title {
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-      
-      }
-
-      img {
+      .card-img {
         max-width: 200px;
         height: 300px;
         margin: auto;
       }
-      
+
+      .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+      }
+
+      .card:hover {
+        border: 5px solid transparent;
+      }
+
+      .card button {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 16px;
+        border: 3px solid white;
+        border-radius: 16px;
+        display: inline-block;
+        background-color: red;
+      }
+
+      .card button:hover {
+        background-color: white;
+        transition: background-color 0.5s ease;
+      }
+
+      .change-color {
+        background-color: red;
+      }
+
+      @media screen and (max-width: 800px) {
+        .button{
+          visibility: hidden;
+    }
+}
+      @media screen and (maxwidth: 500px) {
+          .card {
+            max-width: 300px;
+     }
+
+} 
 
     `;
   }
 
   render() {
     return html`
-    <a href="${this.link}" rel="noopener noreferrer"></a>
-    <div class="card-wrapper">
-    <img src="${this.img}" alt="playing card image">
-    <div class="title">${this.title}</div>
+    <div id="cardlist" class="card-list">
+      <section class="card">
+        <img src="${this.image}" alt="${this.title}" class="card-img">
+        <div class="card-content">
+          <h2 class="card-title">${this.title}</h2>
+          <a href="${this.link}"><button style="--button-color: ${this.buttonColor};">Details</button></a>
+        </div>
+      </section>
   </div>`
   }
 
   static get properties() {
     return {
       title: { type: String },
+      image: { type: String, attribute: "img"}, 
       link: { type: String },
-      img: { type: String}
     };
   }
 }
