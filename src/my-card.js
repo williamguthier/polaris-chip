@@ -12,6 +12,8 @@ export class MyCard extends LitElement {
     this.title = "Title";
     this.image = "Image";
     this.link = "Link";
+    this.fancy = false;
+    this.description ='';
     
   }
 
@@ -20,11 +22,24 @@ export class MyCard extends LitElement {
 
       :host {
         display: inline-flex;
-        background-color: black;
+        
+      }
+      :host([fancy]) {
+        display: inline-block;
+          background-color: black;
+          margin: 0px;
+          border: 16px solid black;
+          box-shadow: 10px 10px 10px 10px black;
+          border-radius: 16px;
+      }   
+
+
+      .card {
         padding: 16px;
+        background-color: black;
         border: 8px solid red;
         border-radius: 16px;
-        margin: 8px;
+        margin: 24px;
         text-align: center;
       }
 
@@ -46,8 +61,15 @@ export class MyCard extends LitElement {
         text-align: center;
       }
 
+      .card-description {
+        font-size: 16px;
+        color: white;
+        text-align: center
+        
+      }
+
       .card:hover {
-        border: 5px solid transparent;
+        border: 12px solid red;
       }
 
       .card button {
@@ -59,6 +81,7 @@ export class MyCard extends LitElement {
         border-radius: 16px;
         display: inline-block;
         background-color: red;
+        margin: 10px;
       }
 
       .card button:hover {
@@ -81,9 +104,38 @@ export class MyCard extends LitElement {
      }
 
 } 
+      details summary {
+        text-align: center;
+        font-size: 20px;
+        padding: 8px 0;
+        color: white;
+  }
+
+      details[open] summary {
+        font-weight: bold;
+  }
+  
+      details div {
+        border: 2px solid red;
+        border-radius: 16px;
+        text-align: center;
+        padding: 8px;
+        height: 70px;
+        overflow: auto;
+  }
 
     `;
   }
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
+  }
+
 
   render() {
     return html`
@@ -92,6 +144,13 @@ export class MyCard extends LitElement {
         <img src="${this.image}" alt="${this.title}" class="card-img">
         <div class="card-content">
           <h2 class="card-title">${this.title}</h2>
+          <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+            <summary>Description</summary>
+              <div>
+                <slot class="card-description">${this.description}</slot>
+              </div>
+          </details>
+
           <a href="${this.link}"><button style="--button-color: ${this.buttonColor};">Details</button></a>
         </div>
       </section>
@@ -101,8 +160,10 @@ export class MyCard extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      description: { type: String },
       image: { type: String, attribute: "img"}, 
       link: { type: String },
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
