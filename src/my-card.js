@@ -19,6 +19,7 @@ export class MyCard extends LitElement {
 
   static get styles() {
     return css`
+
       :host {
         background-color: black;
         display: inline-flex;
@@ -38,10 +39,6 @@ export class MyCard extends LitElement {
 
       }
 
-      button {
-        background-color: white;
-
-      }
 
       .title {
         font-size: 24px;
