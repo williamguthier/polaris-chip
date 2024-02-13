@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-
+import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 export class MyCard extends LitElement {
 
@@ -141,7 +141,8 @@ export class MyCard extends LitElement {
     return html`
     <div id="cardlist" class="card-list">
       <section class="card">
-        <img src="${this.image}" alt="${this.title}" class="card-img">
+        
+        <meme-maker alt="Cat stalking a small toy" image-url="${this.image}" top-text="I bring you" bottom-text="the death" class="card-img"></meme-maker>
         <div class="card-content">
           <h2 class="card-title">${this.title}</h2>
           <details ?open="${this.fancy}" @toggle="${this.openChanged}">
@@ -169,3 +170,5 @@ export class MyCard extends LitElement {
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
+
+
