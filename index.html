@@ -38,7 +38,7 @@
   
 
 <div id="cardlist">
-    <my-card title="Ace of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ace_of_spades.svg/1200px-Ace_of_spades.svg.png" link="https://hax.psu.edu" description="Lord of the cards"></my-card>
+    <my-card title="Ace of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Ace_of_spades.svg/1200px-Ace_of_spades.svg.png" top="top text" bottom = "bottom text" link="https://hax.psu.edu" description="Lord of the cards"></my-card>
     <my-card title="King of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/English_pattern_king_of_spades.svg/1200px-English_pattern_king_of_spades.svg.png" link="https://hax.psu.edu" description="Cowboys"></my-card>
     <my-card title="Queen of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/English_pattern_queen_of_spades.svg/682px-English_pattern_queen_of_spades.svg.png" link="https://hax.psu.edu" description="Ladies"></my-card>
     <my-card title="Jack of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/English_pattern_jack_of_spades.svg/1200px-English_pattern_jack_of_spades.svg.png" link="https://hax.psu.edu" description="Jacks"></my-card>
@@ -75,7 +75,7 @@
       const shadowRoot = myCard.shadowRoot;
       const cardImage = shadowRoot.querySelector('.card-img');
 
-      cardImage.setAttribute("src", 'https://m.media-amazon.com/images/I/518XL5xWcEL._AC_UF1000,1000_QL80_.jpg');
+      cardImage.setAttribute("image-url", 'https://m.media-amazon.com/images/I/518XL5xWcEL._AC_UF1000,1000_QL80_.jpg');
     });
     
     document.querySelector('#changebg').addEventListener('click', function (e) {

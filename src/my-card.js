@@ -14,6 +14,10 @@ export class MyCard extends LitElement {
     this.link = "Link";
     this.fancy = false;
     this.description ='';
+    this.top = '';
+    this.bottom = '';
+    
+
     
   }
 
@@ -142,7 +146,7 @@ export class MyCard extends LitElement {
     <div id="cardlist" class="card-list">
       <section class="card">
         
-        <meme-maker alt="Cat stalking a small toy" image-url="${this.image}" top-text="I bring you" bottom-text="the death" class="card-img"></meme-maker>
+        <meme-maker alt="Cat stalking a small toy" image-url="${this.image}" top-text="${this.top}" bottom-text="${this.bottom}" class="card-img"></meme-maker>
         <div class="card-content">
           <h2 class="card-title">${this.title}</h2>
           <details ?open="${this.fancy}" @toggle="${this.openChanged}">
@@ -165,6 +169,9 @@ export class MyCard extends LitElement {
       image: { type: String, attribute: "img"}, 
       link: { type: String },
       fancy: { type: Boolean, reflect: true },
+      bottom: { type: String},
+      top: { type: String},
+      
     };
   }
 }
