@@ -17,6 +17,7 @@
     polaris-chip {
       margin: 16px;
     }
+    
     h3 {
       margin: 16px;
     }
@@ -44,10 +45,23 @@
     <my-card title="Jack of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/English_pattern_jack_of_spades.svg/1200px-English_pattern_jack_of_spades.svg.png" link="https://hax.psu.edu" description="Jacks"></my-card>
     <my-card title="Ten of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/English_pattern_10_of_spades.svg/360px-English_pattern_10_of_spades.svg.png" link="https://hax.psu.edu" description="Dozens"></my-card>
 </div>
-  
+
+<h1>Counter App</h1>
+<h3>
+  <button id="increment-btn">+</button>
+  <button id="decrement-btn">-</button>
+</h3>
+
+<div id="counterlist">
+  <counter-app></counter-app>
+  <counter-app counter="16" min="10" max="25"></counter-app>
+</div>
+
+
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
 
 
 <script>
