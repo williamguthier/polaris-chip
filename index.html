@@ -46,16 +46,9 @@
     <my-card title="Ten of Spades"  img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/English_pattern_10_of_spades.svg/360px-English_pattern_10_of_spades.svg.png" link="https://hax.psu.edu" description="Dozens"></my-card>
 </div>
 
-<h1>Counter App</h1>
-<h3>
-  <button id="increment-btn">+</button>
-  <button id="decrement-btn">-</button>
-</h3>
 
-<div id="counterlist">
-  <counter-app></counter-app>
-  <counter-app counter="16" min="10" max="25"></counter-app>
-</div>
+<counter-app></counter-app>
+<counter-app counter="16" min="10" max="25"></counter-app>
 
 
   <!-- this is what is bringing in the definition for this tag -->
@@ -111,6 +104,29 @@
         lastCard.remove();
       }
     });
+
+    let counterDisplay = document.querySelector('.counter-display');
+    let counterDecrement = document.querySelector('.counter-decrement');
+    let counterIncrement = document.querySelector('.counter-increment');
+
+    let count = 0;
+    
+    updateDisplay();
+
+    counterIncrement.addEventListener("click",()=>{
+      count++;
+      updateDisplay();
+    }) ;
+
+    counterDecrement.addEventListener("click",()=>{
+      count--;
+      updateDisplay();
+    });
+
+    function updateDisplay(){
+      counterDisplay.innerHTML = count;
+    };
+
 </script>
 </body>
 
