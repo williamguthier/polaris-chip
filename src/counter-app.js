@@ -13,6 +13,46 @@ constructor() {
     
 }
 
+incrementMethod() {
+  if (this.counter < this.max) {
+    this.counter += 1;
+  }
+  this.updateColor();
+
+}
+
+decrementMethod(){
+  if (this.counter > this.min) {
+    this.counter -= 1;
+  }
+  this.updateColor();
+}
+
+updateColor() {
+  if (this.counter === 18 || this.counter === 21 || this.counter === this.min || this.counter === this.max) {
+    this.style.setProperty('--counter-color', 'white');
+  } else {
+    this.style.removeProperty('--counter-color');
+  }
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('counter')) {
+      if (this.counter === 21){
+        this.makeItRain();
+      }
+    }
+    }
+
+
+  makeItRain() {
+    import('@lrnwebcomponents/multiple-choice/lib/confetti-container.js').then((module) => {
+        setTimeout(() => {
+            this.shadowRoot.querySelector('#confetti').setAttribute("popped", "");
+        }, 0);
+    });
+}
+
 
     
   static get styles() {
@@ -23,16 +63,16 @@ constructor() {
       text-align: center;
     }
 
-    #counter {
+    .counter {
       font-size: 64px;
       font-weight: bold;
-      color: red;
+      color: var(--counter-color, red);
       background-color: black;
      
      
     }
 
-    #buttons {
+    .buttons {
       display: inline-flex;
       justify-content: center;
       padding: 10px;
@@ -71,11 +111,14 @@ constructor() {
 
   render() {
     return html`
-        <div id="counter">${this.counter}</div>
-        <div id="buttons">
-            <button id="decrement" class="button" ?disabled="${this.min === this.counter}">-</button>
-            <button id="increment" class="button" ?disabled="${this.max === this.counter}">+</button>
+        <confetti-container id="confetti">
+        <div class="counter">${this.counter}</div>
+        <div class="buttons">
+            <button id="decrement" class="button" ?disabled="${this.min === this.counter}" @click="${this.decrementMethod}">-</button>
+            <button id="increment" class="button" ?disabled="${this.max === this.counter}" @click="${this.incrementMethod}">+</button>
+            
       </div>
+      </confetti-container>
     `}
 
     static get properties() {
@@ -86,6 +129,7 @@ constructor() {
         max: { type: Number},
         }
     }  
+
     
     
 }
