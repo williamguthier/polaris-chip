@@ -10,6 +10,7 @@ export class AlertWrapper extends LitElement {
 constructor() {
     super();
     this.date = "date";
+    this.amessage = "message";
 
 
 }
@@ -17,12 +18,46 @@ constructor() {
 static get styles() {
     return css`
 
+    .header {
+
+    }
+
+    #alerts-content-wrapper {
+
+    }
+    
+    .expand-alert {
+
+    }
+
+    .date {
+
+    }
+
+    .alert-message-wrap {
+
+    }
+
+    .alert-icon {
+
+    }
+
+    .alert-message {
+
+    }
+
+    .minimize-alert {
+        
+    }
+
+
+
     `;
     }   
    
-rendor(){
+render(){
     return html`
-    <header class="header">
+        <header class= "header">
         <div id="alerts-content-wrapper">
             <button class="expand-alert"></button>
             <div class="date">${this.date}</div>
@@ -32,10 +67,8 @@ rendor(){
             </div>
             <div class="minimize-alert">
                 <button>
-                    <span>
-                        ::before
-                        ::after
-                    </span>
+                    <span>::before</span>
+                    <span>:after</span> 
                     "Close"
                 </button>
             </div>
@@ -50,6 +83,7 @@ static get properties() {
     return{
     
         date: { type: String},
+        amessage: { type: String},
     }
 }
 
