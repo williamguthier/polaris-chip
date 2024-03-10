@@ -9,11 +9,13 @@ export class AlertHeader extends LitElement {
 
 constructor() {
     super();
-    this.date = "date";
-    this.amessage = "";
-    this.status = "status";
+    this.date = '';
+    this.amessage = '';
+    this.status = 'status';
     this.open = true;
     this.sticky = false;
+    this.closedHeight = '28px';
+    this.openHeight = '56px';
 
 
 }
@@ -21,32 +23,47 @@ constructor() {
 static get styles() {
     return css`
 
-  
+    :host([sticky]) .alert-wrapper {
+        position: sticky;
 
-    .alert--wrapper {
+    }   
 
+    :host([status="alert"]) .alert-wrapper {
+        background-color: var(--noticeBC, #1daa18)
     }
 
-    .alert-button {
+    :host([status="warning"]) .alert-wrapper {
+        background-color: var(--warningBC, #1815a4)
+    }
+
+    :host([status="emergency"]) .alert-wrapper {
+        background-color: var(--emergencyBC, #c81111)
+    }
+    
+
+    .alert-wrapper {
+        padding: 12px;
+        color: black;
         
     }
 
-    .date {
-
+    .alert-button {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 12px;
+        border: 1px solid black;
+        border-radius: 8px;
+        cursor: pointer;
     }
 
-    .alert-icon {
-
+    .closed .alert-wrapper {
+        max-height: var(--alert-height);
     }
-
-    .alert-message {
-
-    }
-
-
 
     `;
     }   
+
 
     alertButton(){
         if (this.sticky && !this.open) {
@@ -65,12 +82,11 @@ static get styles() {
 render(){
     return html`
        <div class="alert-wrapper ${this.open ? '' : 'closed'}" ?sticky="${this.sticky}">
-        <button class="alert-button" @click="${this.alertButton}">
-          ${this.open ? 'Close' : 'Open'} Alert
-        </button>
-            <svg class="alert-icon"></svg>
             <div class="alert-message">${this.amessage}</div>
             <div class="date">${this.date}</div>
+            <button class="alert-button" @click="${this.alertButton}">
+          ${this.open ? 'Close' : 'Open'} Alert
+        </button>
             </div>
 
     `}
@@ -82,6 +98,8 @@ static get properties() {
         amessage: { type: String},
         date: { type: String},
         sticky: { type: Boolean, reflect: true},
+        closedHeight: { type: String},
+        openHeight: { type: String},
 
         
     }
