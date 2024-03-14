@@ -25,6 +25,9 @@ static get styles() {
 
     :host([sticky]) .alert-wrapper {
         position: sticky;
+        top: 0;
+        z-index: 100;
+
 
     }   
 
@@ -102,8 +105,8 @@ static get properties() {
         openHeight: { type: String},
 
         
+        }
     }
-}
 
 }
 
