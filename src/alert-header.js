@@ -16,6 +16,7 @@ constructor() {
     this.sticky = false;
     this.closedHeight = '28px';
     this.openHeight = '56px';
+    this.atitle = '';
 
 
 }
@@ -75,6 +76,7 @@ static get styles() {
         } else {
             this.open = !this.open;
             localStorage.setItem('alertStatus', this.open ? 'open' : 'closed');
+
         }
 
         this.style.setProperty('--alert-height', this.open ? this.openHeight : this.closedHeight);
@@ -85,6 +87,7 @@ static get styles() {
 render(){
     return html`
        <div class="alert-wrapper ${this.open ? '' : 'closed'}" ?sticky="${this.sticky}">
+            <div class= "alert-title">${this.atitle}</div>
             <div class="alert-message">${this.amessage}</div>
             <div class="date">${this.date}</div>
             <button class="alert-button" @click="${this.alertButton}">
@@ -103,6 +106,7 @@ static get properties() {
         sticky: { type: Boolean, reflect: true},
         closedHeight: { type: String},
         openHeight: { type: String},
+        atitle: { type: String},
 
         
         }
