@@ -88,7 +88,7 @@ render(){
     return html`
        <div class="alert-wrapper ${this.open ? '' : 'closed'}" ?sticky="${this.sticky}">
             <div class= "alert-title">${this.atitle}</div>
-            <div class="alert-message">${this.amessage}</div>
+            ${this.open ? html`<div class="alert-message">${this.amessage}</div>` : ``}
             <div class="date">${this.date}</div>
             <button class="alert-button" @click="${this.alertButton}">
           ${this.open ? 'Close' : 'Open'} Alert

@@ -178,4 +178,3 @@ export class MyCard extends LitElement {
 
 globalThis.customElements.define(MyCard.tag, MyCard);
 
-
