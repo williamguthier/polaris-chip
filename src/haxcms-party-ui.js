@@ -8,6 +8,14 @@ class Haxcms extends DDD {
     users: { type: Array },
   }
 
+  makeItRain() {
+    import('@lrnwebcomponents/multiple-choice/lib/confetti-container.js').then((module) => {
+        setTimeout(() => {
+            this.shadowRoot.querySelector('#confetti').setAttribute("popped", "");
+        }, 0);
+    });
+}
+
   static styles = css`
 
   .card {
@@ -82,14 +90,16 @@ class Haxcms extends DDD {
 
   render() {
     return html`
+    <confetti-container id="confetti">
       <div class="card">
       <div class="input-container">
         <input type="text" id="usernameInput" placeholder="Enter username">
         <button @click="${this.addUser}">Add user</button>
       </div>
       <div class="party-list"></div>
-      <button class="save-button" @click="${this.saveParty}">Save party members</button>
+      <button class="save-button" @click="${this.makeItRain}" >Save party members</button>
       </div>
+      </confetti-container>
       
     `;
   }
