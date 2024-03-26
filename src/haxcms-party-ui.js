@@ -4,9 +4,43 @@ import "@lrnwebcomponents/rpg-character/rpg-character.js";
 
 
 class Haxcms extends DDD {
-  static properties = {
-    users: { type: Array },
+
+  constructor() {
+    super();
+    this.users = [];
+    this.userIdCounter = 0;
   }
+
+  addUser() {
+    const usernameInput = this.shadowRoot.getElementById('usernameInput');
+    const username = usernameInput.value.trim().toLowerCase();
+    if (/^[a-z0-9]+$/.test(username)) {
+      const user = {
+        id: this.userIdCounter++,
+        username: username
+      };
+      this.users.push(user);
+      this.renderUser(user);
+      usernameInput.value = '';
+    } else {
+      alert('Enter only lowercase letters and numbers.');
+    }
+  }
+ 
+  renderUser(user) {
+    const partyList = this.shadowRoot.querySelector('.party-list');
+    const characterCard = document.createElement('div');
+    characterCard.classList.add('character-card');
+    characterCard.innerHTML = `
+      <rpg-character character="${user.username}"></rpg-character>
+      <div>${user.username}</div>
+      <button class="delete-button" @click="${() => this.deleteUser(user.id)}">Delete</button>
+    `;
+    partyList.appendChild(characterCard);
+  }
+
+
+
 
   makeItRain() {
     import('@lrnwebcomponents/multiple-choice/lib/confetti-container.js').then((module) => {
@@ -15,6 +49,7 @@ class Haxcms extends DDD {
         }, 0);
     });
 }
+
 
   static styles = css`
 
@@ -83,10 +118,6 @@ class Haxcms extends DDD {
 
   `;
 
-  constructor() {
-    super();
-    this.users = [];
-  }
 
   render() {
     return html`
@@ -97,7 +128,7 @@ class Haxcms extends DDD {
         <button @click="${this.addUser}">Add user</button>
       </div>
       <div class="party-list"></div>
-      <button class="save-button" @click="${this.makeItRain}" >Save party members</button>
+      <button class="save-button" @click="${this.makeItRain}">Save party members</button>
       </div>
       </confetti-container>
       
