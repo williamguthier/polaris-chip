@@ -34,12 +34,22 @@ class Haxcms extends DDD {
     characterCard.innerHTML = `
       <rpg-character character="${user.username}"></rpg-character>
       <div>${user.username}</div>
-      <button class="delete-button" @click="${() => this.deleteUser(user.id)}">Delete</button>
+      <button class="delete-button">Delete</button>
     `;
+    const deleteButton = characterCard.querySelector('.delete-button');
+    deleteButton.addEventListener('click', () => this.deleteUser(user.id));
     partyList.appendChild(characterCard);
   }
 
-
+  deleteUser(userId) {
+    const index = this.users.findIndex(user => user.id === userId);
+    if (index !== -1) {
+      this.users.splice(index, 1);
+      const partyList = this.shadowRoot.querySelector('.party-list');
+      const characterCards = partyList.querySelectorAll('.character-card');
+      characterCards[index].remove();
+    }
+  }
 
 
   makeItRain() {
