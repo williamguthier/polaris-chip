@@ -1,7 +1,20 @@
 import {html, css } from "lit";
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 import "@lrnwebcomponents/rpg-character/rpg-character.js";
+import copy from 'rollup-plugin-copy';
 
+ copy({
+      targets: [
+        {
+          src: 'node_modules/@lrnwebcomponents/rpg-character/lib',
+          dest: 'dist',
+        },
+        {
+          src: 'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',
+          dest: 'dist',
+        },
+      ],
+    }),
 
 class Haxcms extends DDD {
 
