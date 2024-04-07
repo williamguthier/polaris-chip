@@ -1,22 +1,9 @@
 import {html, css } from "lit";
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 import "@lrnwebcomponents/rpg-character/rpg-character.js";
-import copy from 'rollup-plugin-copy';
 
- copy({
-      targets: [
-        {
-          src: 'node_modules/@lrnwebcomponents/rpg-character/lib',
-          dest: 'dist',
-        },
-        {
-          src: 'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',
-          dest: 'dist',
-        },
-      ],
-    }),
 
-class Haxcms extends DDD {
+export class Haxcms extends DDD {
 
   constructor() {
     super();
@@ -36,7 +23,7 @@ class Haxcms extends DDD {
       this.renderUser(user);
       usernameInput.value = '';
     } else {
-      alert('Enter only lowercase letters and numbers.');
+      alert('Enter only letters and numbers.');
     }
   }
  
@@ -77,9 +64,14 @@ class Haxcms extends DDD {
   static styles = css`
 
   .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 24px;
     border-radius: var(--ddd-radius-md);
     background-color: var(--ddd-theme-default-beaver70)
+  
   }
 
   :host {
@@ -139,6 +131,24 @@ class Haxcms extends DDD {
     cursor: pointer;
   }
 
+  .title {
+    display: inline-block;
+    padding: 24px;
+    background-color: var(--ddd-theme-default-nittanyNavy);
+    color: white;
+    border: 1px solid white;
+    border-radius: var(--ddd-radius-sm);
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 36px;
+  }
+
+  .title:hover {
+    background-color: var(--ddd-theme-default-landgrantBrown);
+    cursor: pointer;
+  }
+
   `;
 
 
@@ -146,6 +156,7 @@ class Haxcms extends DDD {
     return html`
     <confetti-container id="confetti">
       <div class="card">
+      <a href="https://hax.psu.edu/" target="_blank" class="title">RPG Characters!</a>
       <div class="input-container">
         <input type="text" id="usernameInput" placeholder="Enter username">
         <button @click="${this.addUser}">Add user</button>
@@ -157,6 +168,12 @@ class Haxcms extends DDD {
       
     `;
   }
+
+  static get properties() {
+    return{
+      link: { type: String }
+        }
+    }
 }
 
 
