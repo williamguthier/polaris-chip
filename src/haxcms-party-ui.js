@@ -58,6 +58,7 @@ export class Haxcms extends DDD {
             this.shadowRoot.querySelector('#confetti').setAttribute("popped", "");
         }, 0);
     });
+    alert('Success!');
 }
 
 
