@@ -23,7 +23,7 @@ export class Haxcms extends DDD {
       this.renderUser(user);
       usernameInput.value = '';
     } else {
-      alert('Enter only letters and numbers.');
+      alert('Enter only lowercase letters and numbers.');
     }
   }
  
@@ -72,7 +72,6 @@ export class Haxcms extends DDD {
     padding: 24px;
     border-radius: var(--ddd-radius-md);
     background-color: var(--ddd-theme-default-beaver70)
-  
   }
 
   :host {
